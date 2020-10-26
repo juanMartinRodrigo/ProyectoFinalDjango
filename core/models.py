@@ -56,3 +56,4 @@ class Estadistica(models.Model):
     equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE)
     partido = models.ForeignKey(Partido, on_delete=models.CASCADE)
     error = models.ForeignKey(Error, on_delete=models.CASCADE)
+    

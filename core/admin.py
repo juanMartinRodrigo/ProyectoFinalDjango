@@ -45,11 +45,12 @@ class ErrorAdmin(admin.ModelAdmin):
     )
     list_display = ['idError','numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados','numConversionesErrados','numDropErrados','numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',]
 
-
+class EstadisticaAdmin(admin.ModelAdmin):
+    list_display = ['equipo','partido','error',]
 
 # Register your models here.
 admin.site.register(Jugador,JugadorAdmin);
 admin.site.register(Equipo,EquipoAdmin);
 admin.site.register(Error,ErrorAdmin);
 admin.site.register(Partido,PartidoAdmin);
-admin.site.register(Estadistica,);
+admin.site.register(Estadistica, EstadisticaAdmin);
