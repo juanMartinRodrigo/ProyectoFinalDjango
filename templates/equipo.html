@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Equipo</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    </head>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" >Equipo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'jugadores' %}">Jugadores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'entrenadores' %}">Entrenadores</a>
+            </li>
+        </div>
+      </nav>
+      <h1 style="color: white;">.........</h1>
+      <h1 style="color: white;">.........</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-active">
+            <th scope="col">Club</th>
+            <th scope="col">Division</th>
+            <th scope="col">Cantidad de Jugadores</th>
+          </tr>
+        </thead>
+        {% for equipo in equipos %}
+        <tbody>
+          <tr class="table-primary">
+            <th>{{equipo.club}}</th>
+            <td>{{equipo.division}}</td>
+            <td>{{equipo.cantJugadores}}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+</html>

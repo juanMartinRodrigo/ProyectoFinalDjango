@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Partidos</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    </head>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand">Partidos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">home</a>
+            </li>
+        </div>
+      </nav>
+      <h1 style="color: white;">.........</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-active">
+            <th scope="col">Partido N°</th>
+            <th scope="col" colspan="4">Porcentaje de los fowers</th>
+            <th scope="col" colspan="2">Porcentaje de los 3/4</th>
+            <th scope="col" colspan="3">Porcentaje del equipo</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr class="table-active">
+            <th></th>
+            <td>Line</td>
+            <td>Scrum</td>
+            <td>Maul</td>
+            <td>Ruck</td>
+            <td>Conversiones</td>
+            <td>Drop</td>
+            <td>Penales</td>
+            <td>Pases</td>
+            <td>Tacles</td>
+          </tr>
+        </thead>
+        {% for partido in partidos %}
+        <tbody>
+          <tr class="table-primary">
+            <th >{{partido.idPartido}}</th>
+            <td id="line">{{partido.porcLine}}%</td>
+            <td id="scrum">{{partido.porcScrum}}%</td>
+            <td id="maul">{{partido.porcMaules}}%</td>
+            <td id="ruck">{{partido.porcRuck}}%</td>
+            <td id="conver">{{partido.porcConver}}%</td>
+            <td id="drop">{{partido.porcDrop}}%</td>
+            <td id="penal">{{partido.porcPenales}}%</td>
+            <td id="pases">{{partido.porcPases}}%</td>
+            <td id="tacles">{{partido.porcTacles}}%</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+      <div>
+        <button type="button" class="btn btn-primary"><a style="color: white;" href="{% url 'grafica'%}">Ver Grafica</a></button>
+      </div>
+</html>

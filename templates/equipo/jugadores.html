@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jugadores</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    </head>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" >Jugadores</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'equipo' %}">Equipo</a>
+            </li>
+        </div>
+      </nav>
+      <h1 style="color: white;">.........</h1>
+      <h1 style="color: white;">.........</h1>
+      <div class="btn-group-horizontal">
+        {% for jugador in jugadores%}
+        <button type="button" class="btn btn-primary">{{jugador.equipo.club}}</button>
+        {% endfor %}
+      </div>
+      <h1 style="color: white;">.........</h1>
+      <h1 style="color: white;">.........</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-active">
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Club</th>
+            <th scope="col">Posicion</th>
+            <th scope="col">Asistencia Completa</th>
+            <th scope="col">Va al gimnasio</th>
+            <th scope="col">Fue Expulsado</th>
+            <th scope="col">Fue Amonestado</th>
+          </tr>
+        </thead>
+        {% for jugador in jugadores %}
+        <tbody>
+          <tr class="table-primary">
+            <th scope="col">{{jugador.apellido}}</th>
+            <th scope="col">{{jugador.nombre}}</th>
+            <th scope="col">{{jugador.dni}}</th>
+            <th scope="col">{{jugador.tel}}</th>
+            <th scope="col">{{jugador.equipo.club}}</th>
+            <th scope="col">{{jugador.posicion}}</th>
+            {% if jugador.asistenciaComp == True%}
+            <th scope="col"><p>✔</p></th>
+            {%else%}
+            <th scope="col">✖</th>
+            {% endif %}
+            {% if jugador.gym == True%}
+            <th scope="col"><p>✔</p></th>
+            {%else%}
+            <th scope="col">✖</th>
+            {% endif %}
+            {% if jugador.amonestado == True%}
+            <th scope="col"><p>✔</p></th>
+            {%else%}
+            <th scope="col">✖</th>
+            {% endif %}
+            {% if jugador.expulsado == True%}
+            <th scope="col"><p>✔</p></th>
+            {%else%}
+            <th scope="col">✖</th>
+            {% endif %}
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+</html>

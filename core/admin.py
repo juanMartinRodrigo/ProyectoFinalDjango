@@ -14,14 +14,15 @@ class JugadorAdmin(admin.ModelAdmin):
     fieldsets = (
             ('Datos de Personal', {'fields': ('nombre', 'apellido', 'dni',)}),
             ('Contacto ', {'fields': ('tel',)}),
-            ('Datos del Jugador', {'fields': ('posicion','gym','asistenciaComp','amonestado','expulsado',)}),
+            ('Datos del Jugador', {'fields': ('equipo','posicion','gym','asistenciaComp','amonestado','expulsado',)}),
     )
-    list_display = ['nombre', 'apellido', 'dni','tel','posicion','gym','asistenciaComp','amonestado','expulsado',]
+    list_display = ['nombre', 'apellido', 'dni','tel','equipo','posicion','gym','asistenciaComp','amonestado','expulsado',]
     
 class EntrenadorAdmin(admin.ModelAdmin):
-	list_display = ['nombre', 'apellido', 'dni','telefono']
+	list_display = ['nombre', 'apellido', 'dni','telefono', ]
 	fieldsets = (
             ('Datos de Personal', {'fields': ('nombre', 'apellido', 'dni',)}),
+            #('Club ', {'fields': ('equipo',)}),
             ('Contacto ', {'fields': ('telefono',)}),
     )
 	search_fields = ['nombre','apellido','dni']
@@ -32,25 +33,15 @@ class PartidoAdmin(admin.ModelAdmin):
             ('ID', {'fields': ('idPartido',)}),
             ('Cantidad de try', {'fields': ('tri',)}),
             ('Datos de Partido', {'fields': ('numLine','numScrum','numPenales','numConversiones','numDrop','numTacles','numMaul','numRuck','cantPases',)}),
-    )
-    list_display = ['tri','numLine','numScrum','numPenales','numConversiones','numDrop','numTacles','numMaul','numRuck','cantPases',]
-    
-class ErrorAdmin(admin.ModelAdmin):
-    search_fields = ['idError']
-    fieldsets = (
-            ('ID', {'fields': ('idError',)}),
             ('Errores de los Fowers', {'fields': ('numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',)}),
             ('Errores de los 3/4', {'fields': ('numConversionesErrados','numDropErrados',)}),
             ('Errores de el Equipo', {'fields': ('numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados',)}),
     )
-    list_display = ['idError','numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados','numConversionesErrados','numDropErrados','numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',]
+    list_display = ['tri','porcLine','segundos','numLine','numScrum','numPenales','numConversiones','numDrop','numTacles','numMaul','numRuck','cantPases','numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados','numConversionesErrados','numDropErrados','numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',]
 
-class EstadisticaAdmin(admin.ModelAdmin):
-    list_display = ['equipo','partido','error',]
 
 # Register your models here.
 admin.site.register(Jugador,JugadorAdmin);
 admin.site.register(Equipo,EquipoAdmin);
-admin.site.register(Error,ErrorAdmin);
 admin.site.register(Partido,PartidoAdmin);
-admin.site.register(Estadistica, EstadisticaAdmin);
+admin.site.register(Entrenador, EntrenadorAdmin);

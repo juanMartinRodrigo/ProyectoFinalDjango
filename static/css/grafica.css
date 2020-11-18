@@ -1,0 +1,93 @@
+a.button3{
+  display:inline-block;
+  padding:0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#ffffff;
+  background-color:#000000;
+  text-align:center;
+  transition: all 0.2s;
+  }
+  a.button3:hover{
+  background-color:#555657;
+  }
+  
+/*----------------------------------------------------*/
+
+
+  
+/* ---------------------------------------------------*/
+body {
+    background: #f1f1f1;
+
+  }
+  .espacio1{
+    width: 50px;
+    height: 50px;
+  }
+  .espacio2{
+    width: 50px;
+    height: 30px;
+  }
+  .invisible{
+    visibility: hidden;
+  }
+  
+  /* RESTABLECER ESTILOS
+  –––––––––––––––––––-––––––––––––––––––––––––––––––– */
+  
+  .h1 {
+    text-align: center;
+    color: rgb(54, 35, 231);
+  }
+  /* RESTABLECER ESTILOS
+  –––––––––––––––––––-––––––––––––––––––––––––––––––– */
+  
+  .circular-progress {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    margin: auto;
+    background: linear-gradient(
+      rgb(167, 0, 0) 50%,
+      rgb(35, 167, 8) 50%
+    );
+    position: relative;
+    transform: rotate(140deg);
+  }
+
+  .circular-progress::after,::before{
+    height: 12rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    border-radius: 50%;
+    color: rgb(35, 167, 8);
+    
+  }
+
+  .circular-progress::before{
+    width: 12rem;
+    content: "hola culiado";
+    line-height: 7rem;
+    background: #f1f1f1 content-box;
+    padding: .7em;
+    box-sizing: border-box;
+    font-size: 2rem;
+    transform: rotate(-140deg);
+  }
+  .circular-progress::after{
+    content: "40%";
+    width: 13rem;
+    background: linear-gradient(
+      transparent 50%,
+      #f1f1f1 50%
+    );
+    transform: rotate(-140deg);
+    line-height: 13rem; 
+  }

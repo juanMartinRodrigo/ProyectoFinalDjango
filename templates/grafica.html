@@ -1,0 +1,60 @@
+{% load staticfiles %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Grafica circular</title>
+        <link rel="stylesheet" href="{% static 'css/grafica.css' %}">
+        <script>
+          function line(){
+              var opciones = document.getElementById("opcion");
+              var variable = document.getElementById("var");
+              var num = opcion.options[opcion.selectedIndex].value;
+              console.log(num);
+
+          }
+        </script>
+    </head>
+    <div>
+      <a href="{% url 'partidos'%}" class="button3">volver</a>     
+    </div>
+    <div class="espacio1"></div>
+    <h1>Porcentajes</h1>
+    <section class="grafica">
+      <div class="espacio2"></div>
+      <div>
+        <select id="opcion">
+          {%for partido in partidos%}
+          <option value="{{partido.idPartido}}">Partido N°{{partido.idPartido}}</a></option>
+          {% endfor %}
+        </select>
+        <a onclick="line()" class="button3">Seleccionar Partido</a> 
+        <p class="invisible" value="" id="var"></p>
+      </div>
+      
+      <div>
+        
+        {% for partido in partidos %}
+          {% if partido.idPartido == var %}
+          <a class="button3" value="{{partido.porcLine}}" >{{partido.porcLine}}</a>
+          <a class="button3" value="{{partido.porcScrum}}">{{partido.porcScrum}}</a>
+          <a class="button3" value="{{partido.porcMaules}}">{{partido.porcMaules}}</a> 
+          <a class="button3" value="{{partido.porcRuck}}">{{partido.porcRuck}}</a>
+          <a class="button3" value="{{partido.porcConver}}">{{partido.porcConver}}</a>
+          <a class="button3" value="{{partido.porcDrop}}">{{partido.porcDrop}}</a>  
+          <a class="button3" value="{{partido.porcPenales}}">{{partido.porcPenales}}</a>
+          <a class="button3" value="{{partido.porcPases}}">{{partido.porcPases}}</a>
+          <a class="button3" value="{{partido.porcTacles}}">{{partido.porcTacles}}</a> 
+          {% endif%}
+        {% endfor %}
+      </div>
+      <div class="espacio1"></div>
+        <div>
+            <p class="circular-progress"></p> 
+        </div>
+    </section>
+{% endblock %}
+</html>

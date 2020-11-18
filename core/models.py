@@ -14,9 +14,6 @@ class Partido(models.Model):
     numMaul=models.IntegerField()
     numRuck=models.IntegerField()
     cantPases=models.IntegerField()
-
-class Error(models.Model):
-    idError = models.CharField(max_length=8, primary_key=True,default="")
     numLinePerdidos=models.IntegerField()
     numScrumPerdidos=models.IntegerField()
     numPenalesEnContra=models.IntegerField()
@@ -28,9 +25,69 @@ class Error(models.Model):
     numMaulErrados=models.IntegerField()
     numRuckErrados=models.IntegerField()
 
+    def porcLine (self):
+        v = self.numLinePerdidos / self.numLine
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def porcScrum (self):
+        v = self.numScrumPerdidos / self.numScrum
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def porcPenales (self):
+        v = self.numPenalesEnContra / self.numPenales
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def porcConver (self):
+        v = self.numConversionesErrados / self.numConversiones
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def porcDrop (self):
+        v = self.numDropErrados / self.numDrop
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def porcTacles (self):
+        v = self.numTaclesErrados / self.numTacles
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def porcPases (self):
+        p = self.numPaseFoword + self.numPelotasCaidas
+        v = p / self.cantPases
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def porcRuck(self):
+        v = self.numRuckErrados / self.numRuck
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def porcMaules(self):
+        v = self.numMaulErrados / self.numMaul
+        porc = int(v*100)
+        porc = 100 - porc
+        return porc
+
+    def segundos (self):
+        porcentaje = 0
+        segundos = (porcentaje * 90)/50
+        return segundos
+
 class Equipo(models.Model):
-    club=models.CharField(max_length=35, default="Introduzca nombre del club", primary_key=True,)
-    division=models.CharField(max_length=1, default="Introduzca division del club")
+    club=models.CharField(max_length=35, primary_key=True,)
+    division=models.CharField(max_length=1, )
     cantJugadores=models.IntegerField()
     amonestados=models.IntegerField()
     expulsados=models.IntegerField()
@@ -45,15 +102,13 @@ class Jugador(models.Model):
     gym=models.BooleanField(default=False)
     amonestado=models.BooleanField(default=False)
     expulsado=models.BooleanField(default=False)
+    equipo = models.ForeignKey('Equipo', on_delete=models.CASCADE);
 
 class Entrenador(models.Model):
     nombre=models.CharField(max_length=25, default="")
     apellido=models.CharField(max_length=25, default="")
     dni=models.IntegerField()
     telefono=models.IntegerField()
-
-class Estadistica(models.Model):
-    equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE)
-    partido = models.ForeignKey(Partido, on_delete=models.CASCADE)
-    error = models.ForeignKey(Error, on_delete=models.CASCADE)
+    #equipo = models.ForeignKey('Equipo', on_delete=models.CASCADE);
+    
     
