@@ -37,7 +37,7 @@ class PartidoAdmin(admin.ModelAdmin):
             ('Errores de los 3/4', {'fields': ('numConversionesErrados','numDropErrados',)}),
             ('Errores de el Equipo', {'fields': ('numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados',)}),
     )
-    list_display = ['tri','porcLine','segundos','numLine','numScrum','numPenales','numConversiones','numDrop','numTacles','numMaul','numRuck','cantPases','numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados','numConversionesErrados','numDropErrados','numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',]
+    list_display = ['tri','porcLine','numLine','numScrum','numPenales','numConversiones','numDrop','numTacles','numMaul','numRuck','cantPases','numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados','numConversionesErrados','numDropErrados','numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',]
 
 
 # Register your models here.

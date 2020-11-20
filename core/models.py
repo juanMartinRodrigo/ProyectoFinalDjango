@@ -83,7 +83,7 @@ class Partido(models.Model):
     def segundos (self):
         porcentaje = 0
         segundos = (porcentaje * 90)/50
-        return segundos
+        return segundosf
 
 class Equipo(models.Model):
     club=models.CharField(max_length=35, primary_key=True,)

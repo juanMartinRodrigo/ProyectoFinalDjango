@@ -16,6 +16,9 @@ def partido(request):
     partidos = Partido.objects.all()
     return render(request, "partidos.html", locals())
 
+def inputPartido(request):
+    return render(request, "partido/inputPartido.html", )
+
 def jugador(request):
     jugadores = Jugador.objects.all()
     return render(request, "equipo/jugadores.html", locals())
@@ -27,19 +30,11 @@ def entrenador(request):
 def grafica(request):
     partidos = Partido.objects.all()
     #line = partidos.segundos(porcLine)
-    return render(request, "grafica.html", locals())
+    return render(request, "partido/grafica.html", locals())
     
 
     
     # Todos funciones de renderizar templates.:
 
-
-def Line(request, id):
-    partidos = Partido.objects.all()
-    for partido in partidos:
-        if partido.idPartido == id:
-            line = partido.porcLine
-            segundos = (line * 90)/50
-    return render(request, "grafica.html", locals())
 
  

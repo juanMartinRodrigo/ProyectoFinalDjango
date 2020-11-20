@@ -14,6 +14,7 @@
               var variable = document.getElementById("var");
               var num = opcion.options[opcion.selectedIndex].value;
               console.log(num);
+              return num;
 
           }
         </script>
@@ -39,15 +40,15 @@
         
         {% for partido in partidos %}
           {% if partido.idPartido == var %}
-          <a class="button3" value="{{partido.porcLine}}" >{{partido.porcLine}}</a>
-          <a class="button3" value="{{partido.porcScrum}}">{{partido.porcScrum}}</a>
-          <a class="button3" value="{{partido.porcMaules}}">{{partido.porcMaules}}</a> 
-          <a class="button3" value="{{partido.porcRuck}}">{{partido.porcRuck}}</a>
-          <a class="button3" value="{{partido.porcConver}}">{{partido.porcConver}}</a>
-          <a class="button3" value="{{partido.porcDrop}}">{{partido.porcDrop}}</a>  
-          <a class="button3" value="{{partido.porcPenales}}">{{partido.porcPenales}}</a>
-          <a class="button3" value="{{partido.porcPases}}">{{partido.porcPases}}</a>
-          <a class="button3" value="{{partido.porcTacles}}">{{partido.porcTacles}}</a> 
+          <a class="button3" value="{{partido.porcLine}}" >Line</a>
+          <a class="button3" value="{{partido.porcScrum}}">Scrum</a>
+          <a class="button3" value="{{partido.porcMaules}}">Maules</a> 
+          <a class="button3" value="{{partido.porcRuck}}">Rucks</a>
+          <a class="button3" value="{{partido.porcConver}}">Converciones</a>
+          <a class="button3" value="{{partido.porcDrop}}">Drops</a>  
+          <a class="button3" value="{{partido.porcPenales}}">Penales</a>
+          <a class="button3" value="{{partido.porcPases}}">Pases</a>
+          <a class="button3" value="{{partido.porcTacles}}">Tacles</a> 
           {% endif%}
         {% endfor %}
       </div>

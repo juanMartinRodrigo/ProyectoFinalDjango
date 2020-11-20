@@ -57,13 +57,13 @@ body {
       rgb(35, 167, 8) 50%
     );
     position: relative;
-    transform: rotate(140deg);
+    transform: rotate(120deg);
   }
 
   .circular-progress::after,::before{
     height: 12rem;
     position: absolute;
-    top: 0;
+    top: 0; 
     left: 0;
     text-align: center;
     border-radius: 50%;
@@ -73,13 +73,13 @@ body {
 
   .circular-progress::before{
     width: 12rem;
-    content: "hola culiado";
+    content: "Line";
     line-height: 7rem;
     background: #f1f1f1 content-box;
     padding: .7em;
     box-sizing: border-box;
     font-size: 2rem;
-    transform: rotate(-140deg);
+    transform: rotate(-120deg);
   }
   .circular-progress::after{
     content: "40%";
@@ -88,6 +88,6 @@ body {
       transparent 50%,
       #f1f1f1 50%
     );
-    transform: rotate(-140deg);
+    transform: rotate(-120deg);
     line-height: 13rem; 
   }
