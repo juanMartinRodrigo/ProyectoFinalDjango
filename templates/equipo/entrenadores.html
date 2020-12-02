@@ -19,7 +19,7 @@
               <a class="nav-link" href="{% url 'equipo' %}">Equipo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/admin/core/entrenador/add/">Ingresar Datos</a>
+              <a class="nav-link" href="{% url 'inputEntrenador' %}">Ingresar Datos</a>
             </li>
         </div>
       </nav>
@@ -32,6 +32,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">DNI</th>
             <th scope="col">Telefono</th>
+            <th scope="col">Club</th>
           </tr>
         </thead>
         {% for entrenador in entrenadores%}
@@ -41,6 +42,7 @@
             <th scope="col">{{entrenador.nombre}}</th>
             <th scope="col">{{entrenador.dni}}</th>
             <th scope="col">{{entrenador.telefono}}</th>
+            <th scope="col">{{entrenador.equipo.club}}</th>
           </tr>
         </tbody>
         {% endfor %}

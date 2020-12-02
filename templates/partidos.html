@@ -18,7 +18,7 @@
               <a class="nav-link" href="{% url 'home' %}">home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/admin/core/partido/add/">Ingresar Datos</a>
+              <a class="nav-link" href="{% url 'inputPartido' %}">Ingresar Datos</a>
             </li>
         </div>
       </nav>
@@ -27,6 +27,7 @@
         <thead>
           <tr class="table-active">
             <th scope="col">Partido N°</th>
+            <td scope="col">Club Que jugó</td>
             <th scope="col" colspan="4">Porcentaje de los fowers</th>
             <th scope="col" colspan="2">Porcentaje de los 3/4</th>
             <th scope="col" colspan="3">Porcentaje del equipo</th>
@@ -34,6 +35,7 @@
         </thead>
         <thead>
           <tr class="table-active">
+            <th></th>
             <th></th>
             <td>Line</td>
             <td>Scrum</td>
@@ -50,6 +52,7 @@
         <tbody>
           <tr class="table-primary">
             <th >{{partido.idPartido}}</th>
+            <td>{{partido.equipo.club}}</td>
             <td id="line">{{partido.porcLine}}%</td>
             <td id="scrum">{{partido.porcScrum}}%</td>
             <td id="maul">{{partido.porcMaules}}%</td>

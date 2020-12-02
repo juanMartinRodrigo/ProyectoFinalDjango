@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{% block content %}
 
 <!DOCTYPE html>
 <html>
@@ -8,16 +7,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Grafica circular</title>
         <link rel="stylesheet" href="{% static 'css/grafica.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        {% block extrajs %}
         <script>
-          function line(){
+          function Opcion(){
               var opciones = document.getElementById("opcion");
-              var variable = document.getElementById("var");
               var num = opcion.options[opcion.selectedIndex].value;
-              console.log(num);
-              return num;
-
-          }
+              console.log(num);        
+              alert(num)     
+              }
+          $(select[id="opcion"]).on('change', function(){
+            alert('x');
+          })
         </script>
+        {% endblock extrajs %}
     </head>
     <div>
       <a href="{% url 'partidos'%}" class="button3">volver</a>     
@@ -26,20 +29,18 @@
     <h1>Porcentajes</h1>
     <section class="grafica">
       <div class="espacio2"></div>
-      <div>
+      <div class="card-body">
         <select id="opcion">
-          {%for partido in partidos%}
-          <option value="{{partido.idPartido}}">Partido N°{{partido.idPartido}}</a></option>
+          {% for partido in partidos %} 
+          <option value="{{partido.idPartido}}">Partido N°{{partido.idPartido}}</option>
           {% endfor %}
         </select>
-        <a onclick="line()" class="button3">Seleccionar Partido</a> 
-        <p class="invisible" value="" id="var"></p>
+        <button onclick="Opcion()" class="btn btn-primary btn-sm">Selecionar Partido</button>
+      </form>
       </div>
-      
-      <div>
-        
+      <div>  
         {% for partido in partidos %}
-          {% if partido.idPartido == var %}
+          {% if partido.idPartido == form %}
           <a class="button3" value="{{partido.porcLine}}" >Line</a>
           <a class="button3" value="{{partido.porcScrum}}">Scrum</a>
           <a class="button3" value="{{partido.porcMaules}}">Maules</a> 
@@ -57,5 +58,4 @@
             <p class="circular-progress"></p> 
         </div>
     </section>
-{% endblock %}
 </html>

@@ -21,10 +21,7 @@ a.button3{
 
   
 /* ---------------------------------------------------*/
-body {
-    background: #f1f1f1;
 
-  }
   .espacio1{
     width: 50px;
     height: 50px;
@@ -32,9 +29,6 @@ body {
   .espacio2{
     width: 50px;
     height: 30px;
-  }
-  .invisible{
-    visibility: hidden;
   }
   
   /* RESTABLECER ESTILOS
@@ -75,7 +69,7 @@ body {
     width: 12rem;
     content: "Line";
     line-height: 7rem;
-    background: #f1f1f1 content-box;
+    background: #ffffff content-box;
     padding: .7em;
     box-sizing: border-box;
     font-size: 2rem;
@@ -86,7 +80,7 @@ body {
     width: 13rem;
     background: linear-gradient(
       transparent 50%,
-      #f1f1f1 50%
+      #ffffff 50%
     );
     transform: rotate(-120deg);
     line-height: 13rem; 
