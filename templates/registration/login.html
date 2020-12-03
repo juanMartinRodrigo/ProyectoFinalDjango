@@ -1,0 +1,23 @@
+{% load staticfiles %}
+{% block content %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/login-css.css' %}">
+        <title>Iniciar Sesion</title> 
+        <body>
+            <div class="login">
+                <h1>Iniciar Sesion</h1>
+               <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <button type="submit" class="btn btn-primary btn-block btn-large">Iniciar sesion</button>
+                    <div class="espacio"></div>
+                    <a href="{% url 'register_url'%}" >Crear Cuenta</a>
+                </form>
+            </div>
+        </body>
+    </head>
+</html>
+{% endblock %}

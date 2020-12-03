@@ -22,7 +22,7 @@ class graficaSelect(forms.Form):
 
     id.widget.attrs.update({'class': 'special'})
     id.widget.attrs.update(size='1')
-    id.widget.attrs.update()
+    id.widget.attrs.update(id = 'cboPartido')
     
             
 

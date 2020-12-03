@@ -1,0 +1,20 @@
+{% load staticfiles %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/register-style.css' %}">
+        <title>Registrarse</title>
+    </head>
+    <body>
+        <div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <button type="submit" class="btn btn-primary btn-block btn-large">Reguistrarse</button>
+            </form>
+        </div>
+    </body>
+</html>
+{% endblock %}

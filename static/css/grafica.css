@@ -30,7 +30,9 @@ a.button3{
     width: 50px;
     height: 30px;
   }
-  
+  .centrar{ 
+    width: 50%; 
+  }
   /* RESTABLECER ESTILOS
   –––––––––––––––––––-––––––––––––––––––––––––––––––– */
   

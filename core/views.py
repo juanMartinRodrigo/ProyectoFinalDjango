@@ -1,18 +1,39 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.views.generic import TemplateView, ListView
+from django.views.decorators.csrf import csrf_protect
+from django.core import serializers
 from core.models import *
 from core.forms import *
 
 
 # Create your views here.
 
+def registerView(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login_url")
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+def logoutView(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect("login_url")
+
+
 class HomeView(TemplateView):
     template_name = 'home.html'
 
 def equipo(request):
-    equipos = Equipo.objects.all()
+    equipos = Equipo.objects.all().order_by('club')
     return render(request, "equipo.html", locals())
 
 def inputEquipo(request):
@@ -69,33 +90,23 @@ def inputEntrenador(request):
         form = InputEntrenadorForm()
     return render(request, "equipo/inputEntrenador.html", {'form': form})
 
-def grafaaica(request):
-    partidos = Partido.objects.all()
-    return render(request, "partido/grafica.html",locals())
-
 class grafica(TemplateView):
-    model = Partido
     template_name = 'partido/grafica.html'
-
-    def post(self, request, *args, **kwargs):
-        data= {}
-        try:
-            action = request.POST['action']
-            if action == 'select_option':
-                pass
-            else:
-                data['error'] = 'Ha ocurrido un ERROR'
-        except exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
         
     def get_context_data(self, **kwargs):
         context = super(grafica, self).get_context_data(**kwargs)
         context['form'] = graficaSelect()
+        context['partidos'] = Partido.objects.all()
+        context['variable'] = "hola"
         return context
+    
 
-    #return render(request, "partido/grafica.html", {'form': form})
-    # Todos funciones de renderizar templates.:
+@csrf_protect
+def test(request):
+    if request.method == 'POST':
+        partidos = Partido.objects.all()
+        data = serializers.serialize("json", partidos)
+        return HttpResponse(data, content_type='application/json')
 
 
  
