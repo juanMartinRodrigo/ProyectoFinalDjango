@@ -12,7 +12,7 @@ urlpatterns = [
     path('inputEntrenador', views.inputEntrenador, name="inputEntrenador"),
     path('jugadores', views.jugador, name="jugadores"),
     path('inputJugador', views.inputJugador, name="inputJugador"),
-    path('grafica', views.grafica, name="grafica"),
+    path('grafica', grafica.as_view(), name="grafica"),
 
     
 

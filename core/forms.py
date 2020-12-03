@@ -2,6 +2,28 @@ from django import forms
 from django.forms import ModelForm, Form
 from core.models import *
 
+
+class graficaSelect1(forms.ModelForm):
+    class Meta:
+        model = Partido
+
+        fields = [
+            'idPartido'
+        ]
+        labels = {
+            'idPartido': 'Seleccionar Partido',
+        }
+        widgets = {
+            'idPartido': forms.Select(attrs={'class':'form-control'}),
+        }
+
+class graficaSelect(forms.Form):
+    id = forms.ModelChoiceField(queryset= Partido.objects.all(), widget= forms.Select(),)
+
+    id.widget.attrs.update({'class': 'special'})
+    id.widget.attrs.update(size='1')
+    id.widget.attrs.update()
+    
             
 
 class InputEquipoForm(forms.ModelForm):

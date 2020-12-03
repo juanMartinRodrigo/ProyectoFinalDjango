@@ -1,5 +1,5 @@
 {% load staticfiles %}
-
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,19 +8,14 @@
         <title>Grafica circular</title>
         <link rel="stylesheet" href="{% static 'css/grafica.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        {% block extrajs %}
+        <script src="{% static 'js/jquery-3.5.1.min.js'  %}" ></script>
         <script>
-          function Opcion(){
-              var opciones = document.getElementById("opcion");
-              var num = opcion.options[opcion.selectedIndex].value;
-              console.log(num);        
-              alert(num)     
-              }
-          $(select[id="opcion"]).on('change', function(){
-            alert('x');
-          })
+          $(function(){
+            $(select[name="id"]).on('change', function(){
+              alert('x');
+            })
+            });
         </script>
-        {% endblock extrajs %}
     </head>
     <div>
       <a href="{% url 'partidos'%}" class="button3">volver</a>     
@@ -30,13 +25,8 @@
     <section class="grafica">
       <div class="espacio2"></div>
       <div class="card-body">
-        <select id="opcion">
-          {% for partido in partidos %} 
-          <option value="{{partido.idPartido}}">Partido N°{{partido.idPartido}}</option>
-          {% endfor %}
-        </select>
-        <button onclick="Opcion()" class="btn btn-primary btn-sm">Selecionar Partido</button>
-      </form>
+        <label>Selecionar Partido</label>
+        {{form}}
       </div>
       <div>  
         {% for partido in partidos %}

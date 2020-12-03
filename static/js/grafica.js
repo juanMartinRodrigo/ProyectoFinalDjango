@@ -1,9 +1,9 @@
 function Opcion(){
-    var opciones = document.getElementById("opcion");
+    var opciones = document.getElementByName("id");
     var num = opcion.options[opcion.selectedIndex].value;
     console.log(num);        
     alert(num)     
     }
-$(select[name="opcion"]).on('change', function(){
+$(select[name="id"]).on('change', function(){
   alert('x');
 })
