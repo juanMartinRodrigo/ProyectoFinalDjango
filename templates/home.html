@@ -37,7 +37,7 @@
             <div class="nav-item"></div>
             <div class="nav-item"></div>
             <li class="nav-item">
-              <a href="{%url 'logout_url' %}"class="nav-link">Cerrar Sesion</a>
+              <a href="{%url 'logout_url' %}"  class="nav-link" >Cerrar Sesion</a>
             </li>
             <h6  class="nav-link show">|De los errores se aprende|</h6>
           </ul> 
@@ -48,6 +48,49 @@
         <div class="card-header">Bienvenido</div>
       </div>
       <div>
-
+        <a  href="{%url 'inputEstadistica' %}" style="text-align: right;" class="nav-link">Ingresar Datos Para Estadistica</a>
       </div>
+      <div style="width: 50px; height: 50px;"></div>
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-active">
+            <th scope="col" colspan="2">Fecha y Equipo</th>
+            <td scope="col" colspan="1">VS</td>
+            <th scope="col" colspan="9">Datos del Partido</th>
+          </tr>
+        </thead>
+        <thead>
+          <tr class="table-active">
+            <th scope="col" colspan="2"></th>
+            <td scope="col" colspan="1"></td>
+            <td>Line</td>
+            <td>Scrum</td>
+            <td>Maul</td>
+            <td>Ruck</td>
+            <td>Conversiones</td>
+            <td>Drop</td>
+            <td>Penales</td>
+            <td>Pases</td>
+            <td>Tacles</td>
+          </tr>
+        </thead>
+        {% for estadistica in estadisticas %}
+        <tbody>
+          <tr class="table-primary">
+            <th >{{estadistica.partido.fecha}}</th>
+            <th >{{estadistica.partido.equipo_1.club}}</th>
+            <td>{{estadistica.partido.equipo_2.club}}</td>
+            <td id="line">{{estadistica.porcLine}}%</td>
+            <td id="scrum">{{estadistica.porcScrum}}%</td>
+            <td id="maul">{{estadistica.porcMaules}}%</td>
+            <td id="ruck">{{estadistica.porcRuck}}%</td>
+            <td id="conver">{{estadistica.porcConver}}%</td>
+            <td id="drop">{{estadistica.porcDrop}}%</td>
+            <td id="penal">{{estadistica.porcPenales}}%</td>
+            <td id="pases">{{estadistica.porcPases}}%</td>
+            <td id="tacles">{{estadistica.porcTacles}}%</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
 </html>

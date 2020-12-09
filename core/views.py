@@ -32,6 +32,11 @@ def logoutView(request):
 class HomeView(TemplateView):
     template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['estadisticas'] = Estadistica.objects.all()
+        return context
+    
 def equipo(request):
     equipos = Equipo.objects.all().order_by('club')
     return render(request, "equipo.html", locals())
@@ -45,10 +50,11 @@ def inputEquipo(request):
     else:
         form = InputEquipoForm()
     
-    return render(request, "equipo/inputEquipo.html", {'form': form})
+    return render(request, "input/inputEquipo.html", {'form': form})
 
 def partido(request):
     partidos = Partido.objects.all()
+    errores = Error.objects.all()
     return render(request, "partidos.html", locals())
 
 def inputPartido(request):
@@ -60,7 +66,7 @@ def inputPartido(request):
     else:
         form = InputPartidoForm()
 
-    return render(request, "partido/inputPartido.html", {'form': form})
+    return render(request, "input/inputPartido.html", {'form': form})
 
 def jugador(request):
     jugadores = Jugador.objects.all()
@@ -74,7 +80,7 @@ def inputJugador(request):
         return redirect('jugadores')
     else:
         form = InputJugadorForm()
-    return render(request, "equipo/inputJugador.html", {'form': form})
+    return render(request, "input/inputJugador.html", {'form': form})
 
 def entrenador(request):
     entrenadores = Entrenador.objects.all()
@@ -88,7 +94,28 @@ def inputEntrenador(request):
         return redirect('entrenadores')
     else:
         form = InputEntrenadorForm()
-    return render(request, "equipo/inputEntrenador.html", {'form': form})
+    return render(request, "input/inputEntrenador.html", {'form': form})
+
+def inputError(request):
+    if request.method == 'POST':
+        form = InputErroresForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('partidos')
+    else:
+        form = InputErroresForm()
+
+    return render(request, "input/inputError.html", {'form': form})
+
+def inputEstadistica(request):
+    if request.method == 'POST':
+        form = InputEstadisticaForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
+    else:
+        form = InputEstadisticaForm()
+    return render(request, "input/inputEstadistica.html", {'form': form})
 
 class grafica(TemplateView):
     template_name = 'partido/grafica.html'

@@ -2,21 +2,6 @@ from django import forms
 from django.forms import ModelForm, Form
 from core.models import *
 
-
-class graficaSelect1(forms.ModelForm):
-    class Meta:
-        model = Partido
-
-        fields = [
-            'idPartido'
-        ]
-        labels = {
-            'idPartido': 'Seleccionar Partido',
-        }
-        widgets = {
-            'idPartido': forms.Select(attrs={'class':'form-control'}),
-        }
-
 class graficaSelect(forms.Form):
     id = forms.ModelChoiceField(queryset= Partido.objects.all(), widget= forms.Select(),)
 
@@ -24,8 +9,6 @@ class graficaSelect(forms.Form):
     id.widget.attrs.update(size='1')
     id.widget.attrs.update(id = 'cboPartido')
     
-            
-
 class InputEquipoForm(forms.ModelForm):
     class Meta:
         model = Equipo
@@ -77,7 +60,7 @@ class InputJugadorForm(forms.ModelForm):
             'asistenciaComp': 'Asistencia Completa',
             'gym': 'Va al gimnasio',
             'amonestado': 'Fue amonestado',
-            'expulsado': 'Fue amonestado',
+            'expulsado': 'Fue expulsado',
             'equipo': 'A que club va?',
         }
         widgets = {
@@ -85,7 +68,7 @@ class InputJugadorForm(forms.ModelForm):
             'apellido': forms.TextInput(attrs={'class':'form-control'}),
             'dni': forms.NumberInput(attrs={'class':'form-control'}),
             'tel': forms.NumberInput(attrs={'class':'form-control'}),
-            'posicion': forms.TextInput(attrs={'class':'form-control'}),
+            'posicion': forms.Select(attrs={'class':'form-control'}),
             'asistenciaComp': forms.NullBooleanSelect(attrs={'class':'form-control'}),
             'gym':  forms.NullBooleanSelect(attrs={'class':'form-control'}),
             'amonestado':  forms.NullBooleanSelect(attrs={'class':'form-control'}),
@@ -124,8 +107,10 @@ class InputPartidoForm(forms.ModelForm):
         model = Partido
 
         fields = [
-            'idPartido',
-            'equipo',
+            'fecha',
+            'lugar',
+            'equipo_1',
+            'equipo_2',
             'tri',
             'numLine' ,
             'numScrum',
@@ -136,20 +121,12 @@ class InputPartidoForm(forms.ModelForm):
             'numMaul',
             'numRuck',
             'cantPases',
-            'numLinePerdidos',
-            'numScrumPerdidos',
-            'numPenalesEnContra',
-            'numPelotasCaidas',
-            'numPaseFoword',
-            'numConversionesErrados',
-            'numDropErrados',
-            'numTaclesErrados',
-            'numMaulErrados',
-            'numRuckErrados'
         ]
         labels = {
-            'idPartido': 'IdPartido',
-            'equipo': 'Que Equipo jugó',
+            'fecha': 'Fecha',
+            'lugar': 'Lugar',
+            'equipo_1': 'Tu equipo',
+            'equipo_2': 'VS',
             'tri': 'Try',
             'numLine': 'Line',
             'numScrum': 'Scrum',
@@ -160,20 +137,13 @@ class InputPartidoForm(forms.ModelForm):
             'numMaul': 'Mauls',
             'numRuck': 'Rucks',
             'cantPases': 'Pases',
-            'numLinePerdidos': 'Line Perdidos',
-            'numScrumPerdidos': 'Scrum Perdidos',
-            'numPenalesEnContra': 'Penales En Contra',
-            'numPelotasCaidas': 'Pelotas Caidas',
-            'numPaseFoword': 'Pases Fowords',
-            'numConversionesErrados': 'Conversiones Erradas',
-            'numDropErrados': 'Drops Errados',
-            'numTaclesErrados': 'Tacles Errados',
-            'numMaulErrados': 'Mauls Perdidos',
-            'numRuckErrados': 'Rucks Perdidos', 
+             
         }
         widgets = {
-            'idPartido': forms.NumberInput(attrs={'class':'form-control'}),
-            'equipo': forms.Select(attrs={'class':'form-control'}),
+            'fecha': forms.DateInput(attrs={'class':'form-control'}),
+            'lugar': forms.TextInput(attrs={'class':'form-control'}),
+            'equipo_1': forms.Select(attrs={'class':'form-control'}),
+            'equipo_2': forms.Select(attrs={'class':'form-control'}),
             'tri': forms.NumberInput(attrs={'class':'form-control'}),
             'numLine': forms.NumberInput(attrs={'class':'form-control'}),
             'numScrum': forms.NumberInput(attrs={'class':'form-control'}),
@@ -184,6 +154,36 @@ class InputPartidoForm(forms.ModelForm):
             'numMaul': forms.NumberInput(attrs={'class':'form-control'}),
             'numRuck': forms.NumberInput(attrs={'class':'form-control'}),
             'cantPases': forms.NumberInput(attrs={'class':'form-control'}),
+        }
+    
+class InputErroresForm(forms.ModelForm):
+    class Meta:
+        model = Error
+        fields = [
+            'numLinePerdidos',
+            'numScrumPerdidos',
+            'numPenalesEnContra',
+            'numPelotasCaidas',
+            'numPaseFoword',
+            'numConversionesErrados',
+            'numDropErrados',
+            'numTaclesErrados',
+            'numMaulErrados',
+            'numRuckErrados',
+        ]
+        labels = {
+            'numLinePerdidos': 'Line Perdidos',
+            'numScrumPerdidos': 'Scrum Perdidos',
+            'numPenalesEnContra': 'Penales En Contra',
+            'numPelotasCaidas': 'Pelotas Caidas',
+            'numPaseFoword': 'Pases Fowords',
+            'numConversionesErrados': 'Conversiones Erradas',
+            'numDropErrados': 'Drops Errados',
+            'numTaclesErrados': 'Tacles Errados',
+            'numMaulErrados': 'Mauls Perdidos',
+            'numRuckErrados': 'Rucks Perdidos',
+        }
+        widgets = {
             'numLinePerdidos': forms.NumberInput(attrs={'class':'form-control'}),
             'numScrumPerdidos': forms.NumberInput(attrs={'class':'form-control'}),
             'numPenalesEnContra': forms.NumberInput(attrs={'class':'form-control'}),
@@ -195,4 +195,19 @@ class InputPartidoForm(forms.ModelForm):
             'numMaulErrados': forms.NumberInput(attrs={'class':'form-control'}),
             'numRuckErrados': forms.NumberInput(attrs={'class':'form-control'}),
         }
-    
+
+class InputEstadisticaForm(forms.ModelForm):
+    class Meta:
+        model = Estadistica
+        fields = [
+            'partido',
+            'error',
+        ]
+        labels = {
+            'partido': 'Seleccionar partido',
+            'error': 'Errores que se cometieron',
+        }
+        widgets = {
+            'partido': forms.Select(attrs={'class':'form-control'}),
+            'error': forms.Select(attrs={'class':'form-control'}),
+        }

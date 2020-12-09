@@ -18,50 +18,68 @@
               <a class="nav-link" href="{% url 'home' %}">home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'inputPartido' %}">Ingresar Datos</a>
+              <a class="nav-link" href="{% url 'inputPartido' %}">Ingresar Datos del Partido</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'inputError' %}">Ingresar Datos de Errores</a>
             </li>
         </div>
       </nav>
       <div style="width: 50px; height: 50px;"></div>
+      <h5>Partidos</h5>
       <table class="table table-hover">
         <thead>
           <tr class="table-active">
-            <th scope="col">Partido N°</th>
-            <td scope="col">Club Que jugó</td>
-            <th scope="col" colspan="4">Porcentaje de los fowers</th>
-            <th scope="col" colspan="2">Porcentaje de los 3/4</th>
-            <th scope="col" colspan="3">Porcentaje del equipo</th>
-          </tr>
-        </thead>
-        <thead>
-          <tr class="table-active">
-            <th></th>
-            <th></th>
-            <td>Line</td>
-            <td>Scrum</td>
-            <td>Maul</td>
-            <td>Ruck</td>
-            <td>Conversiones</td>
-            <td>Drop</td>
-            <td>Penales</td>
-            <td>Pases</td>
-            <td>Tacles</td>
+            <th scope="col" colspan="2">Fecha y Lugar</th>
+            <td scope="col" colspan="2">Los clubes que jugaron</td>
+            <th scope="col" colspan="9">Datos del Partido</th>
           </tr>
         </thead>
         {% for partido in partidos %}
         <tbody>
           <tr class="table-primary">
-            <th >{{partido.idPartido}}</th>
-            <td>{{partido.equipo.club}}</td>
-            <td id="line">{{partido.porcLine}}%</td>
-            <td id="scrum">{{partido.porcScrum}}%</td>
-            <td id="maul">{{partido.porcMaules}}%</td>
-            <td id="ruck">{{partido.porcRuck}}%</td>
-            <td id="conver">{{partido.porcConver}}%</td>
-            <td id="drop">{{partido.porcDrop}}%</td>
-            <td id="penal">{{partido.porcPenales}}%</td>
-            <td id="pases">{{partido.porcPases}}%</td>
-            <td id="tacles">{{partido.porcTacles}}%</td>
+            <th >{{partido.fecha}}</th>
+            <th >{{partido.lugar}}</th>
+            <td>{{partido.equipo_1.club}}</td>
+            <td>{{partido.equipo_2.club}}</td>
+            <td id="line">{{partido.numLine}}</td>
+            <td id="scrum">{{partido.numScrum}}</td>
+            <td id="maul">{{partido.numMaul}}</td>
+            <td id="ruck">{{partido.numRuck}}</td>
+            <td id="conver">{{partido.numConversiones}}</td>
+            <td id="drop">{{partido.numDrop}}</td>
+            <td id="penal">{{partido.numPenales}}</td>
+            <td id="pases">{{partido.cantPases}}</td>
+            <td id="tacles">{{partido.numTacles}}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+      <div style="width: 50px; height: 50px;"></div>
+      <h5>Errores</h5>
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-active">
+            <th scope="col" colspan="1">Club</th>
+            <th scope="col" colspan="4">Errores de los Fowers</th>
+            <td scope="col" colspan="2">Errores de los 3/4'</td>
+            <th scope="col" colspan="4">Errores de el Equipo</th>
+          </tr>
+        </thead>
+        {% for error in errores %}
+        <tbody>
+          <tr class="table-primary">
+            <th >{{error.equipo.club}}</th>
+            <th >{{error.numLinePerdidos}}</th>
+            <td>{{error.numScrumPerdidos}}</td>
+            <td>{{error.numMaulErrados}}</td>
+            <td>{{error.numRuckErrados}}</td>
+            <td>{{error.numConversionesErrados}}</td>
+            <td>{{error.numDropErrados}}</td>
+            <td>{{error.numPenalesEnContra}}</td>
+            <td>{{error.numPelotasCaidas}}</td>
+            <td>{{error.numPaseFoword}}</td>
+            <td>{{error.numTaclesErrados}}</td>
           </tr>
         </tbody>
         {% endfor %}

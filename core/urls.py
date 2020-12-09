@@ -16,7 +16,9 @@ urlpatterns = [
     path('inputEntrenador', views.inputEntrenador, name="inputEntrenador"),
     path('jugadores', views.jugador, name="jugadores"),
     path('inputJugador', views.inputJugador, name="inputJugador"),
+    path('inputError', views.inputError, name="inputError"),
     path('test', views.test, name="test"), 
     path('grafica', grafica.as_view(), name="grafica"),
+    path('inputEstadistica', views.inputEstadistica, name="inputEstadistica"),
    
 ]

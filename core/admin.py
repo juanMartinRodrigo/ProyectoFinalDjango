@@ -30,18 +30,32 @@ class EntrenadorAdmin(admin.ModelAdmin):
 class PartidoAdmin(admin.ModelAdmin):
     search_fields = ['idPartido']
     fieldsets = (
-            ('ID', {'fields': ('idPartido',)}),
+            ('Fecha y Lugar', {'fields': ('fecha','lugar',)}),
+            ('Tu equipos al Jugar', {'fields': ('equipo_1',)}),
+            ('VS',{'fields': ('equipo_2',)}),
             ('Cantidad de try', {'fields': ('tri',)}),
             ('Datos de Partido', {'fields': ('numLine','numScrum','numPenales','numConversiones','numDrop','numTacles','numMaul','numRuck','cantPases',)}),
-            ('Errores de los Fowers', {'fields': ('numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',)}),
-            ('Errores de los 3/4', {'fields': ('numConversionesErrados','numDropErrados',)}),
-            ('Errores de el Equipo', {'fields': ('numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados',)}),
     )
-    list_display = ['tri', 'idPartido','numLine','numScrum','numPenales','numConversiones','numDrop','numTacles','numMaul','numRuck','cantPases','numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados','numConversionesErrados','numDropErrados','numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',]
+    list_display = ['tri', 'fecha','lugar','equipo_1','equipo_2','numLine','numScrum','numPenales','numConversiones','numDrop','numTacles','numMaul','numRuck','cantPases',]
 
+class ErrorAdmin(admin.ModelAdmin):
+    list_display = ['numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados','numConversionesErrados','numDropErrados','numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados',]
+    fieldsets = (
+        ('Errores de los Fowers', {'fields': ('numLinePerdidos','numScrumPerdidos','numMaulErrados','numRuckErrados',)}),
+        ('Errores de los 3/4', {'fields': ('numConversionesErrados','numDropErrados',)}),
+        ('Errores de el Equipo', {'fields': ('numPenalesEnContra','numPelotasCaidas','numPaseFoword','numTaclesErrados',)}),
+)
+
+class EstadisticaAdmin(admin.ModelAdmin):
+    list_display = ['partido', 'error']
+    fieldsets = (
+        ('informacion', {'fields': ('partido', 'error',)}),
+    )
 
 # Register your models here.
-admin.site.register(Jugador,JugadorAdmin);
 admin.site.register(Equipo,EquipoAdmin);
-admin.site.register(Partido,PartidoAdmin);
+admin.site.register(Jugador,JugadorAdmin);
 admin.site.register(Entrenador, EntrenadorAdmin);
+admin.site.register(Partido,PartidoAdmin);
+admin.site.register(Error,ErrorAdmin);
+admin.site.register(Estadistica,EstadisticaAdmin);
