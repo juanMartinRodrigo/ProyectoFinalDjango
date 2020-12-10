@@ -8,7 +8,6 @@
 - Django
 - JavaScript
 - HTML
-- Templates
 
 
 
